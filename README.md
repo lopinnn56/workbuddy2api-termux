@@ -114,6 +114,15 @@ cp -r ~/workbuddy2api-panel/auths ~/auths.bak
 - 面板打不开 -> `curl 127.0.0.1:7863/healthz` 看进程在不在, 不在就 `./start.sh`; 换 Chrome/Via 试试。
 - 编译慢/流量不够 -> 找 WiFi, `go build` 只需一次, 以后 `update.sh` 增量很快。
 - `pkg install golang` 404 -> 先 `pkg update` 再装(脚本已含)。
+- 多开 Termux 分身(files/files1/files2/files3, 如双开/平行空间):
+  每个分身是独立 HOME/独立 `tmux`, 脚本在哪个分身运行就装在哪个分身,
+  `~/workbuddy2api-panel` 不互通。`ERR_CONNECTION_REFUSED` 先看是不是找错了分身:
+  `ls ~/workbuddy2api-panel/` 没目录 = 这个分身没装, 跑 `install.sh`;
+  有目录没进程(`tmux ls` 无服务/`curl` exit 7)= 被杀了, 跑 `./start.sh`。
+  同一手机两个分身**不能同用 `:7863`** (后起的 bind 失败): 留一个跑,
+  或把另一个 `config.json` 里 `listen` 改成 `":7864"`, 面板/Base URL 端口同步换成 `7864`。
+  搬家(旧分身 -> 新分身): 拷 `config.json` + `auths/*.json` 到新分身同名位置再 `./start.sh`,
+  无需重新扫码登录。
 
 ## 8. 目录结构
 

@@ -1,5 +1,7 @@
-#!/data/data/com.termux/files/usr/bin/bash
-# 平时启动脚本: 放 ~/workbuddy2api-panel/start.sh 一份即可
+#!/usr/bin/env bash
+# 平时启动脚本: 每个容器各放一份到 ~/workbuddy2api-panel/start.sh
+# 必须在“装了服务的那个 Termux 分身”里运行, 跨分身不可见(tmux/进程隔离)。
+# 多开同时跑: 先改其中一个 config.json 的 listen(如 ":7864"), 面板/ Base URL 端口同步换。
 cd "$(dirname "$0")"
 termux-wake-lock 2>/dev/null || true
 if tmux has-session -t wb2api 2>/dev/null; then

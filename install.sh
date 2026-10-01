@@ -1,7 +1,9 @@
-#!/data/data/com.termux/files/usr/bin/bash
-# workbuddy2api-termux 一键安装脚本 (Termux aarch64)
+#!/usr/bin/env bash
+# workbuddy2api-termux 一键安装脚本 (Termux aarch64, 多开容器通用: files/files1/files2/files3)
 # 原理: Release 二进制是在 Alpine 编译的 CGO_ENABLED=0, 硬读 /etc/resolv.conf,
 # 在 Termux 里会回落到 [::1]:53 报 connection refused, 所以必须本地 go build。
+# 注意: 每个 Termux 分身(files/files3 等)是独立 HOME/独立端口, 脚本在哪里运行就装在哪里;
+# 同一手机同时只能起一个 :7863, 第二个容器要改 config.json 里 listen 端口(见 README)。
 set -e
 APP_DIR="$HOME/workbuddy2api-panel"
 SRC_DIR="$HOME/workbuddy-src"

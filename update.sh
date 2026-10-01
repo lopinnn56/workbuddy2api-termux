@@ -1,5 +1,5 @@
-#!/data/data/com.termux/files/usr/bin/bash
-# 更新到上游最新 tag 并重编重启
+#!/usr/bin/env bash
+# 更新到上游最新 tag 并重编重启(在哪个分身运行就更新哪个分身)
 set -e
 APP_DIR="$HOME/workbuddy2api-panel"
 SRC_DIR="$HOME/workbuddy-src"
