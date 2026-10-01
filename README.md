@@ -73,9 +73,15 @@ curl -s http://127.0.0.1:7863/v1/models -H "Authorization: Bearer <你的key>"
 
 ## 4. 平时启动/停止/看日志
 
+先分清两个文件夹(刚下载时只有前者, 装完才有后者):
+- `~/workbuddy2api-termux/` = 本仓库, 放脚本(`install.sh`/`start.sh`/`update.sh`)
+- `~/workbuddy2api-panel/` = 运行目录, 放二进制/配置/账号(`install.sh` 建好并拷一份 `start.sh` 进去)
+
 ```bash
 cd ~/workbuddy2api-panel
 ./start.sh            # 启动(已含 termux-wake-lock), 并打印 Base/Key/healthz
+# 若报 No such file (说明 install 那步没拷过去): bash ~/workbuddy2api-termux/start.sh
+# 新版 start.sh 会自动定位运行目录, 从哪份跑都一样
 tmux attach -t wb2api # 进后台窗口看实时输出, Ctrl-b 再按 d 退出(不杀进程)
 tail -f data/wb2api.log  # 看日志
 tmux kill-session -t wb2api  # 停止

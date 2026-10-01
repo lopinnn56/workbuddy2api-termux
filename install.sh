@@ -47,6 +47,7 @@ echo "API Base: http://127.0.0.1:7863/v1"
 echo "API Key: $API_KEY"
 echo "----------------------------------------"
 echo "启动: bash $APP_DIR/start.sh (本仓库已附带, 安装时自动复制)"
-cp -f "$(dirname "$0")/start.sh" "$APP_DIR/start.sh" 2>/dev/null || true
-chmod +x "$APP_DIR/start.sh" 2>/dev/null || true
+cp -f "$(dirname "$0")/start.sh" "$APP_DIR/start.sh"
+chmod +x "$APP_DIR/start.sh"
+[ -x "$APP_DIR/start.sh" ] || { echo "错误: start.sh 复制失败, 请检查上面报错"; exit 1; }
 bash "$APP_DIR/start.sh"
