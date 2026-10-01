@@ -1,0 +1,8 @@
+# 你的密钥目录, 绝不上传
+config.json
+auths/
+data/
+*.log
+wb2api
+wb2api-release.bak
+workbuddy-src/
